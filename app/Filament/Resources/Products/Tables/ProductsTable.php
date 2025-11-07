@@ -8,6 +8,10 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Actions\ViewAction;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\ActionGroup;
+
 
 class ProductsTable
 {
@@ -48,13 +52,12 @@ class ProductsTable
             ->filters([
                 //
             ])
-            ->recordActions([
+             ->recordActions([
+            ActionGroup::make([
+                ViewAction::make(),
                 EditAction::make(),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
-            ]);
+                DeleteAction::make(),
+            ]),
+        ]);
     }
 }

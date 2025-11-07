@@ -11,6 +11,10 @@ use Filament\Schemas\Schema;
 use Illuminate\Support\Str;
 use Filament\Forms\Components\Select;
 use App\Models\Category;
+use App\Models\Product;
+use Filament\Forms\Set;
+
+
 class ProductForm
 {
     public static function configure(Schema $schema): Schema
@@ -29,18 +33,23 @@ class ProductForm
                     ->searchable()
                     ->preload()
                     ->required(),
-               TextInput::make('name')
-                    ->required()
-                    ->reactive()
-                    ->debounce(600) // Adjust the delay as needed (milliseconds)
-                    ->afterStateUpdated(function ($state, callable $set) {
-                        if (!empty($state)) {
-                            $set('slug', Str::slug($state));
-                        }
-                    }),
+                    TextInput::make('name')
+                          ->required()
+                          ->reactive()
+                          ->maxLength(255)
+                          ->live(onBlur: true)
+                          ->debounce(1000) // Adjust the delay as needed (milliseconds)
+                          ->afterStateUpdated(function ($state, $operation, $set) {
+                              if ($operation !== 'create'){
+                                return;
+                              }
+                              $set('slug', Str::slug($state));
+                          }),
                 TextInput::make('slug')
                     ->required()
-                    ->disabled(),
+                    ->disabled()
+                    ->dehydrated()
+                    ->unique(Product::class, 'slug', ignoreRecord: true),
                 FileUpload::make('images')
                     ->multiple()
                     ->directory('products')
