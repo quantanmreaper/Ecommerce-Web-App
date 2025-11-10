@@ -16,9 +16,14 @@ class BrandForm
                TextInput::make('name')
                         ->required()
                         ->reactive()
-                        ->afterStateUpdated(function ($state, callable $set) {
-                            $set('slug', Str::slug($state));
-                        }),
+                        ->live(onBlur: true)
+                          ->debounce(1000) // Adjust the delay as needed (milliseconds)
+                          ->afterStateUpdated(function ($state, $operation, $set) {
+                              if ($operation !== 'create'){
+                                return;
+                              }
+                              $set('slug', Str::slug($state));
+                          }),
                 TextInput::make('slug')
                     ->required(),
                 FileUpload::make('image')
