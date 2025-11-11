@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Orders\Tables;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Table;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ActionGroup;
@@ -26,7 +27,14 @@ class OrdersTable
                     ->searchable(),
                 TextColumn::make('payment_status')
                     ->searchable(),
-                TextColumn::make('status')
+                SelectColumn::make('status')
+                    ->options([
+                    'new' => 'New',
+                    'processing' => 'Processing',
+                    'shipped' => 'Shipped',
+                    'delivered' => 'Delivered',
+                    'canceled' => 'Canceled',
+                    ])
                     ->searchable(),
                 TextColumn::make('currency')
                     ->searchable(),
