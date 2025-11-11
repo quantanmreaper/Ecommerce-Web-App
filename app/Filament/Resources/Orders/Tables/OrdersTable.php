@@ -2,8 +2,6 @@
 
 namespace App\Filament\Resources\Orders\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
@@ -16,11 +14,13 @@ class OrdersTable
     {
         return $table
             ->columns([
-                TextColumn::make('user_id')
-                    ->numeric()
+                TextColumn::make('user.name')
+                    ->label('Customer')
+                    ->searchable()
                     ->sortable(),
-                TextColumn::make('grand_total')
-                    ->numeric()
+                TextColumn::make('total_amount')
+                    ->label('Total Amount')
+                    ->money(fn ($record) => strtoupper($record->currency ?? 'KSH'))
                     ->sortable(),
                 TextColumn::make('payment_method')
                     ->searchable(),

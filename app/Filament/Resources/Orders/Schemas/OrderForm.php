@@ -8,10 +8,8 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Set;
-use Filament\Forms\Get;
 use App\Models\Product;
-use Filament\Forms\Components\Hidden;
+
 
 class OrderForm
 {
@@ -83,7 +81,6 @@ class OrderForm
                 TextInput::make('shipping_amount')
                     ->numeric()
                     ->default(0),
-                    //->required(),
 
                 Select::make('shipping_method')
                     ->options([
@@ -106,10 +103,13 @@ class OrderForm
                             ->searchable()
                             ->preload()
                             ->distinct()
-                            ->columnSpan(2)
-                            ->reactive()
-                            ->afterStateUpdated(fn ($state,  $set) => $set('unit_amount', Product::find($state)?->price ?? 0))
-                            ->afterStateUpdated(fn ($state,  $set) => $set('total_amount', Product::find($state)?->price ?? 0))
+                            ->columnSpan(4)
+                            ->afterStateUpdated(function ($state, $set, $get) {
+                                $price = Product::find($state)?->price ?? 0;
+                                $set('unit_amount', $price);
+                                $quantity = $get('quantity') ?? 1;
+                                $set('total_amount', $price * $quantity);
+                            })
                             ->disableOptionsWhenSelectedInSiblingRepeaterItems(),
 
                         TextInput::make('quantity')
@@ -117,48 +117,31 @@ class OrderForm
                             ->numeric()
                             ->columnSpan(2)
                             ->minValue(1)
-                            ->reactive()
-                            ->afterStateUpdated(function ($state,  $set,  $get) {
+                            ->afterStateUpdated(function ($state, $set, $get) {
                                 $unitAmount = $get('unit_amount') ?? 0;
                                 $set('total_amount', $unitAmount * $state);
                             })
                             ->default(1),
 
                         TextInput::make('unit_amount')
+                            ->label('Price')
                             ->required()
                             ->numeric()
                             ->columnSpan(3)
-                            ->dehydrated()
-                            ->disabled(),
+                            ->disabled()
+                            ->dehydrated(),
 
                         TextInput::make('total_amount')
+                            ->label('Total')
                             ->required()
                             ->numeric()
-                            ->dehydrated()
                             ->columnSpan(3)
-                            ->disabled(),
+                            ->disabled()
+                            ->dehydrated(),
 
                     ])
                     ->columns(12)
                     ->columnSpanFull(),
-
-                Placeholder::make('grand_total_placeholder')
-                    ->label('Grand Total')
-                    ->content(function ( $get): string {
-                        $total = 0;
-                        $items = $get('items') ?? [];
-
-                        foreach ($items as $item) {
-                            $total += $item['total_amount'] ?? 0;
-                        }
-                        $shippingAmount = $get('shipping_amount') ?? 0;
-                        $total += $shippingAmount;
-
-                        return 'KSH ' . number_format($total, 2);
-                    }),
-
-                    Hidden::make('grand_total')
-                    ->default(0),
             ]);
     }
 }

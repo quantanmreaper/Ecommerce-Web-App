@@ -13,7 +13,7 @@ class OrderInfolist
             ->components([
                 TextEntry::make('user_id')
                     ->numeric(),
-                TextEntry::make('grand_total')
+                TextEntry::make('total_amount')
                     ->numeric()
                     ->placeholder('-'),
                 TextEntry::make('payment_method')

@@ -14,6 +14,7 @@ class Address extends Model
         'first_name',
         'last_name',
         'phone',
+        'email',
         'street_address',
         'city',
         'state',

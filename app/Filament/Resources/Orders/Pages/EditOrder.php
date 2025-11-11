@@ -18,4 +18,14 @@ class EditOrder extends EditRecord
             DeleteAction::make(),
         ];
     }
+
+    protected function afterSave(): void
+    {
+        // Calculate total from saved items
+        $order = $this->record;
+        $total = $order->items->sum('total_amount');
+        $total += $order->shipping_amount ?? 0;
+        
+        $order->update(['total_amount' => $total]);
+    }
 }

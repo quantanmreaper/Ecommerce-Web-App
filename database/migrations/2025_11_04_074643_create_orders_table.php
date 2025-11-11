@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->decimal('grand_total',10,2)->nullable();
+            $table->decimal('total_amount',10,2)->nullable();
             $table->string('payment_method')->nullable();
             $table->string('payment_status')->nullable();
             /** enum creates a database column that only accepts a predefined set of values  */
