@@ -18,6 +18,10 @@ class BrandResource extends Resource
 {
     protected static ?string $model = Brand::class;
 
+    protected static ?int $navigationSort = 2;
+
+    protected static ?string $recordTitleAttribute = 'name';
+
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-computer-desktop';
 
     public static function form(Schema $schema): Schema

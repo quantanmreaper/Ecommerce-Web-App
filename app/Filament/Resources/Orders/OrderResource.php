@@ -21,6 +21,8 @@ class OrderResource extends Resource
 {
     protected static ?string $model = Order::class;
 
+    protected static ?int $navigationSort = 3;
+
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-shopping-bag';
 
     public static function form(Schema $schema): Schema
