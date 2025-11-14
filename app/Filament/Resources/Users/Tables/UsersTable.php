@@ -7,6 +7,9 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\ViewAction;
 
 class UsersTable
 {
@@ -35,12 +38,11 @@ class UsersTable
                 //
             ])
             ->recordActions([
+            ActionGroup::make([
+                ViewAction::make(),
                 EditAction::make(),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
-            ]);
+                DeleteAction::make(),
+            ]),
+        ]);
     }
 }
