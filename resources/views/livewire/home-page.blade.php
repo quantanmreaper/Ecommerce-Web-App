@@ -1,8 +1,8 @@
 <div>
 {{-- Hero Section Start --}}
 
-    <div class="w-full h-screen bg-gradient-to-r from-blue-200 to-cyan-200 py-10 px-4 sm:px-6 lg:px-8 mx-auto">
-  <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="w-full h-screen bg-linear-to-r from-blue-200 to-cyan-200 py-10 px-4 sm:px-6 lg:px-8 mx-auto">
+  <div class="max-w-340 mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Grid -->
     <div class="grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center">
       <div>
@@ -13,7 +13,7 @@
         <div class="mt-7 grid gap-3 w-full sm:inline-flex">
           <a class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/register">
             Get started
-            <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="m9 18 6-6-6-6" />
             </svg>
           </a>
@@ -110,7 +110,7 @@
 
       <div class="relative ms-4">
         <img class="w-full rounded-md" src="https://static.vecteezy.com/system/resources/previews/011/993/278/non_2x/3d-render-online-shopping-bag-using-credit-card-or-cash-for-future-use-credit-card-money-financial-security-on-mobile-3d-application-3d-shop-purchase-basket-retail-store-on-e-commerce-free-png.png" alt="Image Description">
-        <div class="absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 w-full h-full rounded-md mt-4 -mb-4 me-4 -ms-4 lg:mt-6 lg:-mb-6 lg:me-6 lg:-ms-6 dark:from-slate-800 dark:via-slate-900/0 dark:to-slate-900/0"></div>
+        <div class="absolute inset-0 -z-1 bg-linear-to-tr from-gray-200 via-white/0 to-white/0 w-full h-full rounded-md mt-4 -mb-4 me-4 -ms-4 lg:mt-6 lg:-mb-6 lg:me-6 lg:-ms-6 dark:from-slate-800 dark:via-slate-900/0 dark:to-slate-900/0"></div>
 
         <!-- SVG-->
         <div class="absolute bottom-0 start-0">
@@ -217,7 +217,7 @@
     </div>
   </div>
 
-  <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto">
+  <div class="max-w-340 px-4 sm:px-6 lg:px-8 mx-auto">
     <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
 
 
@@ -229,7 +229,7 @@
         <div class="p-4 md:p-5">
           <div class="flex justify-between items-center">
             <div class="flex items-center">
-              <img class="h-[2.375rem] w-[2.375rem] rounded-full" src="{{ url('storage', $category->image) }}" alt="{{ $category->name }}">
+              <img class="h-9.5 w-9.5 rounded-full" src="{{ url('storage', $category->image) }}" alt="{{ $category->name }}">
               <div class="ms-3">
                 <h3 class="group-hover:text-blue-600 font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-200">
                   {{ $category->name }}
@@ -237,7 +237,7 @@
               </div>
             </div>
             <div class="ps-3">
-              <svg class="flex-shrink-0 w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="shrink-0 w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="m9 18 6-6-6-6" />
               </svg>
             </div>
