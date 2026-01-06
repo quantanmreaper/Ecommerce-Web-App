@@ -90,3 +90,12 @@
     </div>
   </nav>
 </header>
+@push('scripts')
+<script>
+  document.addEventListener('livewire:navigated', function () {
+    if (window.HS && window.HS.Dropdown) {
+      HS.Dropdown.autoInit();
+    }
+  });
+</script>
+@endpush
